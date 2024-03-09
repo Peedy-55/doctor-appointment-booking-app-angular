@@ -1,0 +1,15 @@
+
+
+<form (submit)="displayCredentials()">
+    <h3>Who are you?</h3>
+    <select name="userType" id="userType" required [(ngModel)]="userType">
+        <option value="client">Client</option>
+        <option value="doctor">Doctor</option>
+        <option value="admin">Admin</option>
+    </select><br><br>
+    <label for="email">Email</label><br>
+    <input type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="email" ><br>
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="password" ><br>
+    <input type="submit" value="Login">
+</form>
