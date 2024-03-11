@@ -1,5 +1,5 @@
 import { Appointment } from "./appointment";
 
 export class Client{
-    constructor(private id:number,private name:string,private email:string,private password:string,private dateOfBirth:Date,private age:number,private mobileNumber:number,private isActive:boolean, private appointmentList:Appointment[]=new Array() ){}
+    constructor(public name:string="",public email:string="",public password:string="",public dateOfBirth:Date=new Date(),public age?:number,public mobileNumber:number=0,public isActive:boolean=true, public appointmentList:Appointment[]=new Array() ,public id?:number){}
 }
