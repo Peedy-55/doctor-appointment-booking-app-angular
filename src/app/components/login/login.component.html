@@ -1,15 +1,19 @@
 
 
-<form (submit)="displayCredentials()">
-    <h3>Who are you?</h3>
-    <select name="userType" id="userType" required [(ngModel)]="userType">
-        <option value="client">Client</option>
-        <option value="doctor">Doctor</option>
-        <option value="admin">Admin</option>
-    </select><br><br>
-    <label for="email">Email</label><br>
-    <input type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="email" ><br>
-    <label for="password">Password</label><br>
-    <input type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="password" ><br>
-    <input type="submit" value="Login">
-</form>
+<div class="container d-flex flex-column justify-content-center p-5">
+    <!-- <div class="card d-flex flex-row justify-content-center  p-3"> -->
+        <form class="form-control mt-5 p-5" (submit)="displayCredentials()">
+            <h3 class="heading">Who are you?</h3>
+            <select  class="form-select" name="userType" id="userType" required [(ngModel)]="userType">
+                <option value="client">Client</option>
+                <option value="doctor">Doctor</option>
+                <option value="admin">Admin</option>
+            </select><br><br>
+            <label class="form-label" for="email">Email</label><br>
+            <input  class="form-control" type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="email" ><br>
+            <label class="form-label" for="password">Password</label><br>
+            <input  class="form-control" type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="password" ><br>
+            <input  class="form-control" class="btn btn-primary" type="submit" value="Login">
+        </form>
+    <!-- </div> -->
+</div>
