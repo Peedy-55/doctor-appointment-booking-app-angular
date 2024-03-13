@@ -1,0 +1,22 @@
+
+
+<table class="table table-striped-columns" *ngIf="appointments.length>0" class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Appointment Description</th>
+            <th>Payment Status</th>
+            <th>Appointment Date</th>
+            <th>Appointment Slot</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let appointment of appointments;let i=index">
+        <tr >
+            <td>{{i}}</td>
+            <td>{{appointment.appointmentDescription}}</td>
+            <td>{{appointment.paymentStatus}}</td>
+            <td>{{appointment.appointmentDate}}</td>
+            <td>{{appointment.appointmentSlot}}</td>
+        </tr>
+    </tbody>
+</table>
