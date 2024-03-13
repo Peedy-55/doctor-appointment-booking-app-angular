@@ -35,18 +35,35 @@
                 <th>Consultancy Fee</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let doctor of doctors | searchDoctor:searchType:searchInput:sortType ;let i=index">
-                <td>{{i + 1}}</td>
+        <tbody *ngFor="let doctor of doctors | searchDoctor:searchType:searchInput:sortType ;let i=index">
+            <tr >
+                <td>{{i}}</td>
                 <td>{{doctor.name}}</td>
                 <td>{{doctor.specialization}}</td>
                 <td>{{doctor.experience}}</td>
                 <td>{{doctor.consultancyFee}}</td>
+                <td>
+                    <button type="button" (click)="initiateBooking(doctor.id)">Book Appointment</button>
+                </td>
                 <!-- <td> <button (click)="deleteAccountById(doctor.id)" class="btn btn-danger">Delete</button></td> -->
                 <!-- <td> <button (click)="updateAccount(account)" class="btn btn-warning">Update</button></td> -->
-                
+                <td *ngIf="formEnabled && (selectedDoctorId===doctor.id)">
+                    <form (submit)="makeBooking(doctor.id)">
+                        <h3>Enter appointment details</h3>
+                        <label for="appointmentDescription">Description</label><br>
+                        <input id="appointmentDescription" type="text" name="appointmentDescription" placeholder="Brief description for the doctor" [(ngModel)]="appointment.appointmentDescription"><br>
+                        <label for="appointmentDate">Appointment Date</label><br>
+                        <input id="appointmentDate" type="date" name="appointmentDate" placeholder="Enter Appointment Date" [(ngModel)]="appointment.appointmentDate"><br>
+                        <label for="appointmentSlot">Appointment Slot</label><br>
+                        <input id="appointmentSlot" type="number" name="appointmentSlot" placeholder="Enter Appointment Slot" [(ngModel)]="appointment.appointmentSlot"><br>
+                        <input type="submit" value="Book">
+                    </form>
+                </td> 
+                            
                 
             </tr>
+              
+            
         </tbody>
     </table>
 

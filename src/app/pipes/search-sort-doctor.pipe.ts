@@ -24,11 +24,11 @@ export class SearchAndSortDoctorPipe implements PipeTransform {
         return filteredDoctors.sort((doctor1,doctor2)=>doctor1.specialization.localeCompare(doctor2.specialization))
        
       case 'experience':
-        return filteredDoctors.sort((doctor1,doctor2)=>doctor1.experience-doctor2.experience)
+        return filteredDoctors.sort((doctor1,doctor2)=>doctor2.experience-doctor1.experience)
        
       case 'consultancy-fee':
         return filteredDoctors.sort((doctor1,doctor2)=>doctor1.consultancyFee-doctor2.consultancyFee)
-        
+
       default:
         return doctors
     }

@@ -11,4 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'doctor-appointment-booking-app';
+  loggedIn = localStorage.getItem('loggedIn')==='true'; 
+
+  logout(){
+    localStorage.removeItem('user')
+    localStorage.setItem('loggedIn', "false")
+  }
 }

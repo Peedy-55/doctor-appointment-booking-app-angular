@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule], 
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -18,14 +18,17 @@ export class LoginComponent {
     data:any
     constructor(private loginService: LoginService,private router:Router) { }
 
+
     displayCredentials(){
       let userCredentials = { email:this.email, password: this.password,role:this.userType};
-      localStorage.setItem("user", JSON.stringify(userCredentials));
+      
       this.loginService.loginUser(userCredentials).subscribe(
         {
           next: (data) => {
             console.log(data);
             this.data = data;
+            localStorage.setItem("user", JSON.stringify({id:data.id,name:data.name,type:this.userType}));
+            localStorage.setItem("loggedIn","true")
           },
           error: (err) => {
             console.log(err);
