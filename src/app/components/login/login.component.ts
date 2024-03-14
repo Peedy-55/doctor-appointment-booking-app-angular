@@ -20,14 +20,14 @@ export class LoginComponent {
 
 
     displayCredentials(){
-      let userCredentials = { email:this.email, password: this.password,role:this.userType};
+      let userCredentials = { email:this.email, password: this.password,type:this.userType};
       
       this.loginService.loginUser(userCredentials).subscribe(
         {
           next: (data) => {
-            console.log(data);
+            // console.log(data);
             this.data = data;
-            localStorage.setItem("user", JSON.stringify({id:data.id,name:data.name,type:this.userType}));
+            localStorage.setItem("user", JSON.stringify({id:data.id,name:data.name,type:this.userType,email:data.email,password:data.password}));
             localStorage.setItem("loggedIn","true")
           },
           error: (err) => {

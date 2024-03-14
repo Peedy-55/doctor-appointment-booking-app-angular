@@ -1,0 +1,42 @@
+<div class="d-flex flex-column justify-content-center p-5">
+    <div class="d-flex flex-column justify-content-center">
+        <div>
+            <div>
+                <h3 class="heading">Search client :</h3>        
+                <input class="search-input" type="search" placeholder="Search" [(ngModel)]="searchInput"><br><br><br>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="displayClients()">Show All clients</button>
+        <p *ngIf="error!=''">{{error}}</p>
+    </div><br><br>
+
+    <h3 class="heading"  *ngIf="clients.length>0">Available clients</h3>
+    <table class="table table-striped-columns" *ngIf="clients.length>0" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Mobile Number</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let client of clients | searchSortClients:searchInput ;let i=index">
+            <tr >
+                <td>{{i}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.email}}</td>
+                <td>{{client.age}}</td>
+                <td>{{client.mobileNumber}}</td>
+                <!-- <td>
+                    <button type="button" (click)="deleteclient(client.id)">Deactivate Account</button>
+                </td> -->
+                <!-- <td> <button (click)="deleteAccountById(client.id)" class="btn btn-danger">Delete</button></td> -->
+                <!-- <td> <button (click)="updateAccount(account)" class="btn btn-warning">Update</button></td> -->
+            </tr>
+              
+            
+        </tbody>
+    </table>
+
+</div>

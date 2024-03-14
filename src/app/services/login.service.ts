@@ -17,9 +17,9 @@ export class LoginService {
     //   retrievedUser = JSON.parse(userItem); // Now TypeScript knows userItem is a string
     //   console.log(retrievedUser.role);
     // }
-    console.log(userCredentials)
+    // console.log(userCredentials)
     // console.log({email: userCredentials.email, password: userCredentials.password})
-    return this.httpClient.post(`http://localhost:8090/login/${userCredentials.role}`,{email: userCredentials.email, password: userCredentials.password})}
+    return this.httpClient.post(`http://localhost:8090/login/${userCredentials.type}`,{email: userCredentials.email, password: userCredentials.password})}
   }
 
 

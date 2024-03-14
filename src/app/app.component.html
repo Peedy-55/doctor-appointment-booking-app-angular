@@ -6,13 +6,20 @@
           <div class="navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" routerLink='login' routerLinkActive="active">Login</a>
-              <a class="nav-link" routerLink='register' routerLinkActive="active">Register</a>
-              <a class="nav-link" routerLink='doctors' routerLinkActive="active">Book Appointment</a>
-              <a class="nav-link" routerLink='appointments' routerLinkActive="active">Appointments</a>
+              <a *ngIf="userType=='client' || userType=='doctor'" class="nav-link" routerLink='register' routerLinkActive="active">Register</a>
+              <a *ngIf="userType=='client' || userType=='doctor'" class="nav-link" routerLink='update-account' routerLinkActive="active">Update Account</a>
+              <a *ngIf="userType=='client'" class="nav-link" routerLink='doctors' routerLinkActive="active">Book Appointment</a>
+              <a *ngIf="userType=='client' || userType=='doctor' || userType=='admin'" class="nav-link" routerLink='appointments' routerLinkActive="active">Appointments</a>
+              
+              <!-- TO BE ONLY ACCESSED BY ADMIN -->
+              <a *ngIf="userType=='client'" class="nav-link" routerLink='all-doctors' routerLinkActive="active">Doctor Database</a>
+              <a *ngIf="userType=='client'" class="nav-link" routerLink='all-clients' routerLinkActive="active">Client Database</a>
+
+
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
             </div>
           </div>
-
+        
         </div>
 
         <button class="btn btn-outline-danger me-2" *ngIf="loggedIn" (click)="logout()" type="button">Logout</button>
