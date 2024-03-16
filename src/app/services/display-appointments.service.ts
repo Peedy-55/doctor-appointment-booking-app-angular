@@ -11,5 +11,6 @@ export class DisplayAppointmentsService {
 
   displayAppointments(id:string,userType:string):Observable<any>{
     return this.httpClient.get(`http://localhost:8090/${userType}/all-appointments/${userType}ID=${id}`)
+    
   }
 }

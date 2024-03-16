@@ -1,4 +1,5 @@
 
+<input class="search-input" type="date" placeholder="Search" [(ngModel)]="searchInput"><br><br><br>
 
 <table class="table table-striped-columns" *ngIf="appointments.length>0" class="table">
     <thead>
@@ -10,7 +11,7 @@
             <th>Appointment Slot</th>
         </tr>
     </thead>
-    <tbody *ngFor="let appointment of appointments;let i=index">
+    <tbody *ngFor="let appointment of appointments|searchSortAppointments:searchInput;let i=index">
         <tr >
             <td>{{i}}</td>
             <td>{{appointment.appointmentDescription}}</td>

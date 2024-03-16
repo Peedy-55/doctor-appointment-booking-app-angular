@@ -1,34 +1,38 @@
-<p *ngIf="error!=''">{{error}}</p>
+<div class="container d-flex flex-column justify-content-center p-5 m-5">
+    <p *ngIf="error!=''">{{error}}</p>
 
-<form name="client" *ngIf="userType==='client'" (submit)="updateAccount()">
-    <label class="form-label" for="name">Name</label><br>
-    <input type="text" id="name" name="name" placeholder="Enter your name" required [(ngModel)]="client.name"><br>
-    <label class="form-label" for="email">Email</label><br>
-    <input type="email" id="email" name="email" placeholder="Enter your email"  required disabled [(ngModel)]="client.email" ><br>
-    <label class="form-label" for="password">Password</label><br>
-    <input type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="client.password" ><br>
-    <label class="form-label" for="dateOfBirth">Date of Birth</label><br>
-    <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Enter your date of birth"  required [(ngModel)]="client.dateOfBirth" ><br>
-    <label class="form-label" for="mobile">Mobile Number</label><br>
-    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number"  required [(ngModel)]="client.mobileNumber" ><br>
-    <input type="submit" value="Update">
-</form>
+    <h3 class="heading m-2">Updated Details</h3>
+
+    <form class="form-control p-5 m-2" name="client" *ngIf="userType==='client'" (submit)="updateAccount()">
+        <label class="form-label" for="name">Name</label><br>
+        <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="20" [(ngModel)]="client.name"><br>
+        <label class="form-label" for="email">Email</label><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="Enter your email"  required disabled [(ngModel)]="client.email" ><br>
+        <label class="form-label" for="password">Password</label><br>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="client.password" ><br>
+        <label class="form-label" for="dateOfBirth">Date of Birth</label><br>
+        <input class="form-control" type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Enter your date of birth"  required [(ngModel)]="client.dateOfBirth" ><br>
+        <label class="form-label" for="mobile">Mobile Number</label><br>
+        <input class="form-control" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number"  required [(ngModel)]="client.mobileNumber" ><br>
+        <input class="btn btn-primary"  type="submit" value="Update">
+    </form>
 
 
-<form name="doctor" *ngIf="userType==='doctor'" (submit)="updateAccount()">
-    <label class="form-label" for="name">Name</label><br>
-    <input type="text" id="name" name="name" placeholder="Enter your name" required [(ngModel)]="doctor.name"><br>
-    <label class="form-label" for="email">Email</label><br>
-    <input type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="doctor.email" disabled><br>
-    <label class="form-label" for="password">Password</label><br>
-    <input type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="doctor.password" ><br>
-    <label class="form-label" for="specialization">Specializayion</label><br>
-    <input type="text" id="specialization" name="specialization" placeholder="Enter your specialization" required [(ngModel)]="doctor.specialization"><br>
-    <label class="form-label" for="experience">Experience</label><br>
-    <input type="number" id="experience" name="experience" placeholder="Enter your experience in years" required [(ngModel)]="doctor.experience"><br>
-    <label class="form-label" for="mobile">Mobile Number</label><br>
-    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number"  required [(ngModel)]="doctor.mobileNumber" ><br>
-    <label class="form-label" for="consultancyFee">Consultancy Fee</label><br>
-    <input type="number" id="consultancyFee" name="consultancyFee" placeholder="Enter your consultancy fee" required [(ngModel)]="doctor.consultancyFee"><br>
-    <input type="submit" value="Update">
-</form>
+    <form class="form-control p-5 m-2" name="doctor" *ngIf="userType==='doctor'" (submit)="updateAccount()">
+        <label class="form-label" for="name">Name</label><br>
+        <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="20" [(ngModel)]="doctor.name"><br>
+        <label class="form-label" for="email">Email</label><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="doctor.email" disabled><br>
+        <label class="form-label" for="password">Password</label><br>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"  required [(ngModel)]="doctor.password" ><br>
+        <label class="form-label" for="specialization">Specializayion</label><br>
+        <input class="form-control" type="text" id="specialization" name="specialization" placeholder="Enter your specialization" required [(ngModel)]="doctor.specialization"><br>
+        <label class="form-label" for="experience">Experience</label><br>
+        <input class="form-control" type="number" id="experience" name="experience" placeholder="Enter your experience in years" required [(ngModel)]="doctor.experience"><br>
+        <label class="form-label" for="mobile">Mobile Number</label><br>
+        <input class="form-control" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number"  required [(ngModel)]="doctor.mobileNumber" ><br>
+        <label class="form-label" for="consultancyFee">Consultancy Fee</label><br>
+        <input class="form-control" type="number" id="consultancyFee" name="consultancyFee" placeholder="Enter your consultancy fee" required [(ngModel)]="doctor.consultancyFee"><br>
+        <input class="btn btn-primary" type="submit" value="Update">
+    </form>
+</div>

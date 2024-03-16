@@ -19,6 +19,7 @@ export class RegistrationComponent {
     doctor:Doctor=new Doctor()
     data:any
     error:string=""
+    bussinessLogicError:string=""
     constructor(private registrationService: RegistrationService,private router:Router) { }
 
 
@@ -31,7 +32,10 @@ export class RegistrationComponent {
             this.data = data;
           },
           error: (err) => {
-            this.error=err.error
+            if(typeof(err.error)==="string"){
+              this.bussinessLogicError=err.error
+            }
+          
             console.log(err)
           }
         }
@@ -46,7 +50,10 @@ export class RegistrationComponent {
             console.log(data)
           },
           error:(err)=>{
-            this.error=err.error
+            if(typeof(err.error)==="string"){
+              this.bussinessLogicError=err.error
+            }
+            console.log(err)
           }
         }
       )
