@@ -19,7 +19,8 @@ export class RegistrationComponent {
     doctor:Doctor=new Doctor()
     data:any
     error:string=""
-    bussinessLogicError:string=""
+    businessLogicError:string=""
+    successMessage:string=""
     constructor(private registrationService: RegistrationService,private router:Router) { }
 
 
@@ -28,14 +29,15 @@ export class RegistrationComponent {
         {
           next: (data) => {
             console.log(data);
-            this.error=""
+            this.businessLogicError=""
+            this.successMessage="Account registered successfully!"
             this.data = data;
           },
           error: (err) => {
             if(typeof(err.error)==="string"){
-              this.bussinessLogicError=err.error
+              this.businessLogicError=err.error
             }
-          
+            this.successMessage=""
             console.log(err)
           }
         }
@@ -46,13 +48,15 @@ export class RegistrationComponent {
       this.registrationService.registerDoctor(this.doctor).subscribe(
         {
           next:(data)=>{
-            this.error=""
+            this.businessLogicError=""
+            this.successMessage="Account registered successfully!"
             console.log(data)
           },
           error:(err)=>{
             if(typeof(err.error)==="string"){
-              this.bussinessLogicError=err.error
+              this.businessLogicError=err.error
             }
+            this.successMessage=""
             console.log(err)
           }
         }

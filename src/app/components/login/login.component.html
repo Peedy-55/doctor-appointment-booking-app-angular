@@ -9,6 +9,10 @@
                 <option value="doctor">Doctor</option>
                 <option value="admin">Admin</option>
             </select><br><br>
+
+            <p class="alert alert-danger" *ngIf="businessLogicError!=''">{{businessLogicError}}</p><br>
+            <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p><br>
+
             <label class="form-label" for="email">Email</label><br>
             <input  class="form-control" type="email" id="email" name="email" placeholder="Enter your email"  required [(ngModel)]="email" ><br>
             <label class="form-label" for="password">Password</label><br>

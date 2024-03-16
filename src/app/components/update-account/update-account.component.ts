@@ -20,6 +20,9 @@ export class UpdateAccountComponent {
     error:string=""
     userType:string=""
 
+    businessLogicError:string=""
+    successMessage:string=""
+
     constructor(private updateService: UpdateService,private loginService:LoginService, private router:Router) {
       let userDetails:any=localStorage.getItem('user')
       if(userDetails!==null){
@@ -62,11 +65,16 @@ export class UpdateAccountComponent {
           {
             next: (data) => {
               console.log(data,"updateAccount");
+              this.businessLogicError=""
+              this.successMessage="Account updated successfully!"
               localStorage.setItem("user", JSON.stringify({id:data.id,name:data.name,type:this.userType,email:data.email,password:data.password}));
               this.error=""
             },
             error: (err) => {
-              this.error=err.error
+              if(typeof(err.error)==="string"){
+                this.businessLogicError=err.error
+              }
+              this.successMessage=""
               console.log(err)
             }
           }
@@ -76,11 +84,16 @@ export class UpdateAccountComponent {
           {
             next: (data) => {
               console.log(data,'update');
+              this.businessLogicError=""
+              this.successMessage="Account updated successfully!"
               localStorage.setItem("user", JSON.stringify({id:data.id,name:data.name,type:this.userType,email:data.email,password:data.password}));
               this.error=""
             },
             error: (err) => {
-              this.error=err.error
+              if(typeof(err.error)==="string"){
+                this.businessLogicError=err.error
+              }
+              this.successMessage=""
               console.log(err)
             }
           }

@@ -19,6 +19,8 @@ export class DisplayDoctorsComponent {
   doctors: Doctor[] = [];
   appointment:Appointment=new Appointment();
   error:string=""
+  businessLogicError:string=""
+  successMessage:string=""
   sortType="doctor-name"
   searchType:string="doctor-name"
   searchInput:string=""
@@ -67,11 +69,17 @@ export class DisplayDoctorsComponent {
       {
         next:(data)=>{
           console.log(data)
+          this.businessLogicError=""
+          this.successMessage="Appointment booking successful!"
           // this.error=""
           // this.doctors=data
         },
         error:(err)=>{
           console.log(err)
+          if(typeof(err.error)==="string"){
+            this.businessLogicError=err.error
+          }
+          this.successMessage=""
           // this.error=err.error
         }
       }

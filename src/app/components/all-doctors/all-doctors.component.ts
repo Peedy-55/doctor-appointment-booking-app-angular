@@ -20,6 +20,8 @@ export class AllDoctorsComponent {
   sortType="doctor-name"
   searchType:string="doctor-name"
   searchInput:string=""
+  businessLogicError:string=""
+  successMessage:string=""
   searchParameters: { searchInput: string; searchType: string } = { searchInput: this.searchInput, searchType: this.searchType };
   selectedDoctorId?:number=0
   formEnabled:boolean = false
@@ -50,12 +52,16 @@ export class AllDoctorsComponent {
       {
         next:(data)=>{
           console.log(data)
-          this.error=""
+          this.businessLogicError=""
+          this.successMessage="Account deactivated successfully!"
           this.doctors=data
         },
         error:(err)=>{
           console.log(err)
-          this.error=err.error
+          if(typeof(err.error)==="string"){
+            this.businessLogicError=err.error
+          }
+          this.successMessage=""
         }
       }
     )
