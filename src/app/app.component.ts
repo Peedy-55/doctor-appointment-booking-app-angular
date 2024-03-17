@@ -25,5 +25,6 @@ export class AppComponent {
   logout(){
     localStorage.removeItem('user')
     localStorage.setItem('loggedIn', "false")
+    alert('Logged out successfully!')
   }
 }

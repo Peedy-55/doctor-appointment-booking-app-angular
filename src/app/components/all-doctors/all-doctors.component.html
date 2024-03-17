@@ -26,6 +26,8 @@
     
     </div><br><br>
 
+    <hr><br>
+
     <h3 class="heading"  *ngIf="doctors.length>0">Available Doctors</h3>
     <table class="table table-striped-columns" *ngIf="doctors.length>0" class="table">
         <thead>
@@ -45,7 +47,7 @@
                 <td>{{doctor.experience}}</td>
                 <td>{{doctor.consultancyFee}}</td>
                 <td>
-                    <button type="button" (click)="deleteDoctor(doctor.id)">Deactivate Account</button>
+                    <button class="btn btn-primary" type="button" (click)="deleteDoctor(doctor.id)">Deactivate Account</button>
                 </td>
                 <!-- <td> <button (click)="deleteAccountById(doctor.id)" class="btn btn-danger">Delete</button></td> -->
                 <!-- <td> <button (click)="updateAccount(account)" class="btn btn-warning">Update</button></td> -->

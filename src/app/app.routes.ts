@@ -6,6 +6,7 @@ import { DisplayAppointmentsComponent } from './components/display-appointments/
 import { UpdateAccountComponent } from './components/update-account/update-account.component';
 import { AllDoctorsComponent } from './components/all-doctors/all-doctors.component';
 import { AllClientsComponent } from './components/all-clients/all-clients.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {path:'login', component:LoginComponent},
@@ -15,4 +16,7 @@ export const routes: Routes = [
     {path:'appointments', component:DisplayAppointmentsComponent},
     {path:'all-doctors', component:AllDoctorsComponent},
     {path:'all-clients', component:AllClientsComponent},
+    { path: '', redirectTo: 'login', pathMatch:'full' },
+    { path: 'not-found', component: PageNotFoundComponent },
+    { path: '**',redirectTo: 'not-found' }
 ];
