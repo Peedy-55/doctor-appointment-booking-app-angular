@@ -14,7 +14,7 @@ import { SearchSortAppointmentsPipe } from '../../pipes/search-sort-appointments
 })
 export class DisplayAppointmentsComponent {
     appointments: Appointment[]=[]
-    searchInput: Date= new Date
+    searchInput: Date= new Date()
     constructor(private displayAppointmentsService: DisplayAppointmentsService){
       let userData:any=localStorage.getItem('user')
 
