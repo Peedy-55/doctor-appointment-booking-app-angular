@@ -1,0 +1,36 @@
+
+
+<div class="container d-flex flex-column justify-content-center p-5">
+    <!-- <div class="card d-flex flex-row justify-content-center  p-3"> -->
+        <form class="form-control mt-5 p-5"  #userForm="ngForm" (submit)="displayCredentials()">
+            <h3 class="heading">Who are you?</h3>
+            <select  class="form-select" name="userType" id="userType" required [(ngModel)]="userType">
+                <option value="client">Client</option>
+                <option value="doctor">Doctor</option>
+                <option value="admin">Admin</option>
+            </select><br><br>
+
+            <p class="alert alert-danger" *ngIf="businessLogicError!=''">{{businessLogicError}}</p><br>
+            <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p><br>
+
+            <label class="form-label" for="email">Email</label><br>
+            <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$"  required [(ngModel)]="email" ><br>
+    
+            <div *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
+                <p *ngIf="emailRef.errors?.['required']" class="text-danger">Email cannnot be blank</p>
+                <p *ngIf="emailRef.errors?.['pattern']" class="text-danger">Enter a valid email</p>
+            </div>
+
+            <label class="form-label" for="password">Password</label><br>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" #passwordRef="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\^$*.\[\]{}()?\-\\!@#%&\,>':;|_~`+=]).{8,16}$"  required [(ngModel)]="password" ><br>
+            
+            <div *ngIf="passwordRef.invalid && (passwordRef.touched || passwordRef.dirty)">
+                <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password cannnot be blank</p>
+                <p *ngIf="passwordRef.errors?.['pattern']" class="text-danger">Password should contain at least one of each of the following -> lowercase, uppercase, digit, special character with length between 8 to 16 characters</p>
+            </div>
+    
+            <input class="btn btn-primary" type="submit" [disabled]="! userForm.valid" value="Login">
+    
+        </form>
+    <!-- </div> -->
+</div>

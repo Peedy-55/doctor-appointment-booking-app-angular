@@ -1,0 +1,120 @@
+
+<div class="container p-5 d-flex flex-column justify-content-center">
+    <div class="card p-5">
+        <h3 class="heading">Who are you?</h3>
+    <select class="form-control" name="userType" id="userType" required [(ngModel)]="userType">
+        <option value="client">Client</option>
+        <option value="doctor">Doctor</option>
+    </select><br><br>
+
+    <p class="alert alert-danger" *ngIf="businessLogicError!=''">{{businessLogicError}}</p>
+    <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p><br>
+
+    <form class="form-control p-5" name="client"  #userForm="ngForm" *ngIf="userType=='client'" (submit)="registerClient()">
+        
+        <label class="form-label" for="name">Name</label><br>
+        <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" #nameRef="ngModel" required pattern="^[a-zA-Z ]{3,20}$" [(ngModel)]="client.name"><br>
+
+        <div *ngIf="nameRef.invalid && (nameRef.touched || nameRef.dirty)">
+            <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name cannnot be blank</p>
+            <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Name can only contain letters, length should be between 3-20 characters</p>
+        </div>
+
+        <label class="form-label" for="email">Email</label><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$"  required [(ngModel)]="client.email" ><br>
+
+        <div *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
+            <p *ngIf="emailRef.errors?.['required']" class="text-danger">Email cannnot be blank</p>
+            <p *ngIf="emailRef.errors?.['pattern']" class="text-danger">Enter a valid email</p>
+        </div>
+
+        <label class="form-label" for="password">Password</label><br>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" #passwordRef="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\^$*.\[\]{}()?\-\\!@#%&\,>':;|_~`+=]).{8,16}$"  required [(ngModel)]="client.password" ><br>
+        
+        <div *ngIf="passwordRef.invalid && (passwordRef.touched || passwordRef.dirty)">
+            <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password cannnot be blank</p>
+            <p *ngIf="passwordRef.errors?.['pattern']" class="text-danger">Password should contain at least one of each of the following -> lowercase, uppercase, digit, special character with length between 8 to 16 characters</p>
+        </div>
+        
+        <label class="form-label" for="dateOfBirth">Date of Birth</label><br>
+        <input class="form-control" type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Enter your date of birth" #dateOfBirthRef="ngModel" required [(ngModel)]="client.dateOfBirth" ><br>
+        
+        <div *ngIf="dateOfBirthRef.invalid && (dateOfBirthRef.touched || dateOfBirthRef.dirty)">
+            <p *ngIf="dateOfBirthRef.errors?.['required']" class="text-danger">Date of birth cannnot be blank</p>
+            <!-- <p *ngIf="dateOfBirthRef.errors?.['pattern']" class="text-danger">dateOfBirth should contain at least one of each of the following -> lowercase, uppercase, digit, special character with length between 8 to 16 characters</p> -->
+        </div>
+        
+        <label class="form-label" for="mobile">Mobile Number</label><br>
+        <input class="form-control" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" #mobileRef="ngModel" pattern="[1-9][0-9]{9}" required [(ngModel)]="client.mobileNumber" ><br>
+        
+        <div *ngIf="mobileRef.invalid && (mobileRef.touched || mobileRef.dirty)">
+            <p *ngIf="mobileRef.errors?.['required']" class="text-danger">Mobile number cannnot be blank</p>
+            <p *ngIf="mobileRef.errors?.['pattern']" class="text-danger">Enter a 10 digit mobile number</p>
+        </div>
+
+        <input class="btn btn-primary" type="submit" [disabled]="! userForm.valid" value="Register">
+    </form>
+
+
+    <form class="form-control p-5" name="doctor"  #userForm2="ngForm" *ngIf="userType=='doctor'" (submit)="registerDoctor()">
+        
+        <label class="form-label" for="name">Name</label><br>
+        <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" #nameRef="ngModel" required pattern="^[a-zA-Z ]{3,20}$" [(ngModel)]="doctor.name"><br>
+
+        <div *ngIf="nameRef.invalid && (nameRef.touched || nameRef.dirty)">
+            <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name cannnot be blank</p>
+            <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Name can only contain letters, length should be between 3-20 characters</p>
+        </div>
+        
+        <label class="form-label" for="email">Email</label><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$"  required [(ngModel)]="doctor.email" ><br>
+
+        <div *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
+            <p *ngIf="emailRef.errors?.['required']" class="text-danger">Email cannnot be blank</p>
+            <p *ngIf="emailRef.errors?.['pattern']" class="text-danger">Enter a valid email</p>
+        </div>
+        
+        <label class="form-label" for="password">Password</label><br>
+        <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" #passwordRef="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\^$*.\[\]{}()?\-\\!@#%&\,>':;|_~`+=]).{8,16}$"  required [(ngModel)]="doctor.password" ><br>
+        
+        <div *ngIf="passwordRef.invalid && (passwordRef.touched || passwordRef.dirty)">
+            <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password cannnot be blank</p>
+            <p *ngIf="passwordRef.errors?.['pattern']" class="text-danger">Password should contain at least one of each of the following -> lowercase, uppercase, digit, special character with length between 8 to 16 characters</p>
+        </div>
+        
+        <label class="form-label" for="specialization">Specialization</label><br>
+        <input class="form-control" type="text" id="specialization" name="specialization" placeholder="Enter your specialization" #specializationRef="ngModel" required pattern="^[a-zA-Z]{3,20}$" [(ngModel)]="doctor.specialization"><br>
+        
+        <div *ngIf="specializationRef.invalid && (specializationRef.touched || specializationRef.dirty)">
+            <p *ngIf="specializationRef.errors?.['required']" class="text-danger">Specialization cannnot be blank</p>
+            <p *ngIf="specializationRef.errors?.['pattern']" class="text-danger">Specialization can only contain letters with size 3-20 characters</p>
+        </div>
+        
+        <label class="form-label" for="experience">Experience</label><br>
+        <input class="form-control" type="number" id="experience" name="experience" placeholder="Enter your experience in years" #experienceRef="ngModel" required pattern="^[0-9]{1,2}$" [(ngModel)]="doctor.experience"><br>
+        
+        <div *ngIf="experienceRef.invalid && (experienceRef.touched || experienceRef.dirty)">
+            <p *ngIf="experienceRef.errors?.['required']" class="text-danger">Experience cannnot be blank</p>
+            <p *ngIf="experienceRef.errors?.['pattern']" class="text-danger">Enter a valid number of years as experience</p>
+        </div>
+
+        <label class="form-label" for="mobile">Mobile Number</label><br>
+        <input class="form-control" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" #mobileRef="ngModel" pattern="[1-9][0-9]{9}" required [(ngModel)]="doctor.mobileNumber" ><br>
+        
+        <div *ngIf="mobileRef.invalid && (mobileRef.touched || mobileRef.dirty)">
+            <p *ngIf="mobileRef.errors?.['required']" class="text-danger">Mobile number cannnot be blank</p>
+            <p *ngIf="mobileRef.errors?.['pattern']" class="text-danger">Enter a 10 digit mobile number</p>
+        </div>
+
+        <label class="form-label" for="consultancyFee">Consultancy Fee</label><br>
+        <input class="form-control" type="number" id="consultancyFee" name="consultancyFee" placeholder="Enter your consultancy fee" #consultancyFeeRef="ngModel" pattern="^[0-9]{1,6}$" required [(ngModel)]="doctor.consultancyFee"><br>
+
+        <div *ngIf="consultancyFeeRef.invalid && (consultancyFeeRef.touched || consultancyFeeRef.dirty)">
+            <p *ngIf="consultancyFeeRef.errors?.['required']" class="text-danger">Consultancy Fee cannnot be blank</p>
+            <p *ngIf="consultancyFeeRef.errors?.['pattern']" class="text-danger">Enter a valid amount as consultancy Fee</p>
+        </div>
+
+        <input class="btn btn-primary" type="submit" [disabled]="! userForm2.valid" value="Register">
+    </form>
+    </div>
+</div>

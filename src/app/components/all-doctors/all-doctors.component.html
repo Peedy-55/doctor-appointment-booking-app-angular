@@ -1,0 +1,60 @@
+<div class="d-flex flex-column justify-content-center p-5">
+    <div class="d-flex flex-column justify-content-center">
+        <div>
+            <div>
+                <h3 class="heading">Search by: </h3>
+                <select class="form-select" name="searchType" id="searchType" [(ngModel)]="searchType">
+                    <option value="doctor-name" selected>Name</option>
+                    <option value="specialization">Specialization</option>
+                </select> <br><br>
+                
+                <input class="search-input" type="search" placeholder="Search" [(ngModel)]="searchInput"><br><br><br>
+            </div>
+            <div>
+                <h3 class="heading">Sort by: </h3>
+                <select class="form-select" name="sortType" id="sortType" [(ngModel)]="sortType">
+                    <option value="doctor-name" selected>Name</option>
+                    <option value="specialization">Specialization</option>
+                    <option value="experience">Experience</option>
+                    <option value="consultancy-fee">Consultancy Fee</option>
+                </select> <br><br>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="displayDoctors()">Show All Doctors</button><br>
+        <p class="alert alert-danger mt-3" *ngIf="businessLogicError!=''">{{businessLogicError}}</p>
+        <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p>
+    
+    </div><br><br>
+
+    <hr><br>
+
+    <h3 class="heading"  *ngIf="doctors.length>0">Available Doctors</h3>
+    <table class="table table-striped-columns" *ngIf="doctors.length>0" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Experience</th>
+                <th>Consultancy Fee</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let doctor of doctors | searchDoctor:searchType:searchInput:sortType ;let i=index">
+            <tr >
+                <td>{{i}}</td>
+                <td>{{doctor.name}}</td>
+                <td>{{doctor.specialization}}</td>
+                <td>{{doctor.experience}}</td>
+                <td>{{doctor.consultancyFee}}</td>
+                <td>
+                    <button class="btn btn-primary" type="button" (click)="deleteDoctor(doctor.id)">Deactivate Account</button>
+                </td>
+                <!-- <td> <button (click)="deleteAccountById(doctor.id)" class="btn btn-danger">Delete</button></td> -->
+                <!-- <td> <button (click)="updateAccount(account)" class="btn btn-warning">Update</button></td> -->
+            </tr>
+              
+            
+        </tbody>
+    </table>
+
+</div>
