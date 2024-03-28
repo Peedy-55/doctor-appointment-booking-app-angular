@@ -1,22 +1,27 @@
+<div class="container p-5">
+    <h3 class="heading">Search by Date</h3><br>
+    <input class="search-input" id="dateSelector" type="date" placeholder="Search" [(ngModel)]="searchInput"><br><br><br>
 
-
-<table class="table table-striped-columns" *ngIf="appointments.length>0" class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Appointment Description</th>
-            <th>Payment Status</th>
-            <th>Appointment Date</th>
-            <th>Appointment Slot</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let appointment of appointments;let i=index">
-        <tr >
-            <td>{{i}}</td>
-            <td>{{appointment.appointmentDescription}}</td>
-            <td>{{appointment.paymentStatus}}</td>
-            <td>{{appointment.appointmentDate}}</td>
-            <td>{{appointment.appointmentSlot}}</td>
-        </tr>
-    </tbody>
-</table>
+    <hr>
+    <h3 class="heading">Appointments</h3><br>
+    <table class="table table-striped-columns" *ngIf="appointments.length>0" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Appointment Description</th>
+                <th>Payment Status</th>
+                <th>Appointment Date</th>
+                <th>Appointment Slot</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let appointment of appointments|searchSortAppointments:searchInput;let i=index">
+            <tr >
+                <td>{{i}}</td>
+                <td>{{appointment.appointmentDescription}}</td>
+                <td>{{appointment.paymentStatus}}</td>
+                <td>{{appointment.appointmentDate}}</td>
+                <td>{{appointment.appointmentSlot}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

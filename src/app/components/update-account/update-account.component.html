@@ -1,17 +1,14 @@
+<div class="container d-flex flex-column justify-content-center p-5 m-5">
+    <p *ngIf="error!=''">{{error}}</p>
 
-<div class="container p-5 d-flex flex-column justify-content-center">
-    <div class="card p-5">
-        <h3 class="heading">Who are you?</h3>
-    <select class="form-control" name="userType" id="userType" required [(ngModel)]="userType">
-        <option value="client">Client</option>
-        <option value="doctor">Doctor</option>
-    </select><br><br>
+    <h3 class="heading m-2">Updated Details</h3>
 
-    <p class="alert alert-danger" *ngIf="businessLogicError!=''">{{businessLogicError}}</p>
-    <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p><br>
-
-    <form class="form-control p-5" name="client"  #userForm="ngForm" *ngIf="userType=='client'" (submit)="registerClient()">
+    <form class="form-control p-5 m-2" name="client" #userForm="ngForm" *ngIf="userType==='client'" (submit)="updateAccount()">
         
+        <p class="alert alert-danger" *ngIf="businessLogicError!=''">{{businessLogicError}}</p>
+        <p class="alert alert-success" *ngIf="successMessage!=''">{{successMessage}}</p><br>
+    
+
         <label class="form-label" for="name">Name</label><br>
         <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" #nameRef="ngModel" required pattern="^[a-zA-Z ]{3,20}$" [(ngModel)]="client.name"><br>
 
@@ -21,7 +18,7 @@
         </div>
 
         <label class="form-label" for="email">Email</label><br>
-        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$"  required [(ngModel)]="client.email" ><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$" disabled required [(ngModel)]="client.email" ><br>
 
         <div *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
             <p *ngIf="emailRef.errors?.['required']" class="text-danger">Email cannnot be blank</p>
@@ -52,12 +49,11 @@
             <p *ngIf="mobileRef.errors?.['pattern']" class="text-danger">Enter a 10 digit mobile number</p>
         </div>
 
-        <input class="btn btn-primary" type="submit" [disabled]="! userForm.valid" value="Register">
+        <input class="btn btn-primary" type="submit" [disabled]="! userForm.valid" value="Update">
     </form>
 
 
-    <form class="form-control p-5" name="doctor"  #userForm2="ngForm" *ngIf="userType=='doctor'" (submit)="registerDoctor()">
-        
+    <form class="form-control p-5 m-2" name="doctor" #userForm="ngForm" *ngIf="userType==='doctor'" (submit)="updateAccount()">
         <label class="form-label" for="name">Name</label><br>
         <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" #nameRef="ngModel" required pattern="^[a-zA-Z ]{3,20}$" [(ngModel)]="doctor.name"><br>
 
@@ -67,7 +63,7 @@
         </div>
         
         <label class="form-label" for="email">Email</label><br>
-        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$"  required [(ngModel)]="doctor.email" ><br>
+        <input class="form-control" type="email" id="email" name="email" placeholder="username@domain.com" #emailRef="ngModel" pattern="^[a-zA-Z0-9._+]{1,20}@(gmail\.com|yahoo\.com|ford\.com|outlook\.com)$" disabled required [(ngModel)]="doctor.email" ><br>
 
         <div *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
             <p *ngIf="emailRef.errors?.['required']" class="text-danger">Email cannnot be blank</p>
@@ -114,7 +110,6 @@
             <p *ngIf="consultancyFeeRef.errors?.['pattern']" class="text-danger">Enter a valid amount as consultancy Fee</p>
         </div>
 
-        <input class="btn btn-primary" type="submit" [disabled]="! userForm2.valid" value="Register">
+        <input class="btn btn-primary" type="submit" [disabled]="! userForm.valid" value="Update">
     </form>
-    </div>
 </div>

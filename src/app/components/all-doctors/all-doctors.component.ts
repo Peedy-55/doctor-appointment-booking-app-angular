@@ -1,33 +1,31 @@
 import { Component } from '@angular/core';
 import { Doctor } from '../../models/doctor';
 import { DisplayDoctorsService } from '../../services/display-doctors.service';
-import { CommonModule } from '@angular/common';
+import { DeleteDoctorService } from '../../services/delete-doctor.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { SearchAndSortDoctorPipe } from '../../pipes/search-sort-doctor.pipe';
-import { Appointment } from '../../models/appointment';
-import { BookAppointmentService } from '../../services/book-appointment.service';
 
 @Component({
-  selector: 'app-display-doctors',
+  selector: 'app-all-doctors',
   standalone: true,
-  imports: [CommonModule,FormsModule,SearchAndSortDoctorPipe],
-  templateUrl: './display-doctors.component.html',
-  styleUrl: './display-doctors.component.css'
+  imports: [FormsModule, CommonModule,SearchAndSortDoctorPipe],
+  templateUrl: './all-doctors.component.html',
+  styleUrl: './all-doctors.component.css'
 })
-export class DisplayDoctorsComponent {
-
+export class AllDoctorsComponent {
   doctors: Doctor[] = [];
-  appointment:Appointment=new Appointment();
+  
   error:string=""
-  businessLogicError:string=""
-  successMessage:string=""
   sortType="doctor-name"
   searchType:string="doctor-name"
   searchInput:string=""
+  businessLogicError:string=""
+  successMessage:string=""
   searchParameters: { searchInput: string; searchType: string } = { searchInput: this.searchInput, searchType: this.searchType };
   selectedDoctorId?:number=0
   formEnabled:boolean = false
-  constructor(private displayDoctorsService:DisplayDoctorsService,private bookAppointmentService:BookAppointmentService){}
+  constructor(private displayDoctorsService:DisplayDoctorsService,private deleteDoctorService:DeleteDoctorService){}
 
   displayDoctors(){
     // searchParameters:Object={searchInput:this.searchInput,searchType:this.searchType}
@@ -49,30 +47,14 @@ export class DisplayDoctorsComponent {
     )
   }
 
-  initiateBooking(doctorId?:number){
-      this.selectedDoctorId=doctorId
-      this.formEnabled=true
-  }
-
-  makeBooking(doctorId?:number){
-    let userDetails:any=localStorage.getItem("user")
-      if(userDetails!==null){
-        userDetails=JSON.parse(userDetails)
-      }
-     console.log(userDetails,userDetails.id)
-      this.appointment.clientID=userDetails.id
-      this.appointment.doctorID=doctorId
-    
-    console.log(doctorId)
-
-    this.bookAppointmentService.bookAppointment(this.appointment).subscribe(
+  deleteDoctor(id?:number){
+    this.deleteDoctorService.deleteDoctor(id).subscribe(
       {
         next:(data)=>{
           console.log(data)
           this.businessLogicError=""
-          this.successMessage="Appointment booking successful!"
-          // this.error=""
-          // this.doctors=data
+          this.successMessage="Account deactivated successfully!"
+          this.doctors=data
         },
         error:(err)=>{
           console.log(err)
@@ -80,10 +62,9 @@ export class DisplayDoctorsComponent {
             this.businessLogicError=err.error
           }
           this.successMessage=""
-          // this.error=err.error
         }
       }
     )
   }
-
+  
 }
